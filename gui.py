@@ -56,7 +56,8 @@ def thread_copyfile():
 	pb.start()
 	time.sleep(1)
 	try:
-		copyfile("c:\\dira\\test_file.txt","c:\\dirb\\testfile.txt");
+		#copyfile("c:\\dira\\test_file.txt","c:\\dirb\\testfile.txt");
+		copyfile("dir1\\testfile.txt","dir2\\testfile_copy.txt");
 		pb.stop()
 	except IOError:
 		print ("CopyFile raised exception: File not found");
@@ -86,6 +87,10 @@ def on_closing():
             return
     else:
         root.destroy()
+		
+def callback_gitclone():
+	subprocess.call("gitclone.bat");
+	print "GIT CLONE IS FINISHED"
 #def callback_donwload():
     
 #def callback_stat():
@@ -107,6 +112,9 @@ button_stat.grid(row = 4,pady = 5)
 
 button_stat = Button(root, text="CopyFile", command=callback_copyfile)
 button_stat.grid(row = 6,pady = 5)
+
+button_stat = Button(root, text="GITClone", command=callback_gitclone)
+button_stat.grid(row = 7,pady = 5)
 
 pb = ttk.Progressbar(root, orient="horizontal", length=200, mode="determinate",maximum = 100)
 pb.grid(row = 5,padx = 10,pady = 10);
